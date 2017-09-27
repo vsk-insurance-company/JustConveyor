@@ -1,0 +1,10 @@
+*.suo
+*.user
+*.bat
+
+**/bin/*
+**/obj/*
+
+**/packages/*
+**/bower_components/*
+**/wwwroot/lib/*

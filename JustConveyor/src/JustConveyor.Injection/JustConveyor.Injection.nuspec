@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>0.0.5</version>
+    <title>JustConveyor.Injection</title>
+    <authors>Maxim (VolhvPorechja) Sidorov</authors>
+    <owners>Insurance House "VSK"</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Micro-ETL framework for builing concurrent process pipelines using conveyor-like model. This package contain with realization of lightweight IoC container with contract from JustConveyor.Contracts package for using with JustConveyor.</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright 2017 Insurance House "VSK".</copyright>
+    <summary>JustConveyor - Micro-ETL (Extract Transform Load) framework for ease building data concurrent process pipelines.</summary>
+    <tags>ETL MicroETL concurrent process pipelining</tags>
+  </metadata>
+</package>

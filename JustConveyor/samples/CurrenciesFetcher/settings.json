@@ -1,0 +1,7 @@
+﻿{
+  "services": {
+    "fixerio": {
+      "connectionstring": "http://api.fixer.io/"
+    }
+  }
+}
