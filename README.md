@@ -160,6 +160,7 @@ Version 1.x
 - [ ] profiling
 - [ ] show settings/version/additional meta
 - [ ] emergent cancellation and suspending
+- [ ] internal μservices
 - [ ] get last logs
 - [ ] admin web-console
 - [ ] short circuiting
