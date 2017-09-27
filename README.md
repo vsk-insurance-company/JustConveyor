@@ -24,7 +24,7 @@ Superficial processing logic description:
 
 Usage samples
 ------------------
-As a very base samples we will take trivial task of multiplying given numbers on 2 (*more complex samples* look in samples directory of project *and detailed architecture* look on [project's WIKI]()):
+As a very base samples we will take trivial task of multiplying given numbers on 2 (*more complex samples* look in samples directory of project *and detailed architecture* look on [project's WIKI](https://github.com/vsk-insurance-company/JustConveyor/wiki)):
 
 **Supplier**
 ```csharp
