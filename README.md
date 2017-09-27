@@ -4,18 +4,19 @@ Micro-ETL framework for building integration or ETL in-app processes with convey
 
 Conveyor and Pipelines model description
 --------------------
+
 Main entities of model are **Pipelines**, **Suppliers** and **Conveyor**.
-**Pipeline** - sequential logic of unit processing that contains input  queue.
-**Suppliers** - entity that produces packages that contains processing units.
-**Conveyor** - environment for hosting pipelines and routing packages from sources and direct requests to pipelines' input queues.
+* **Pipeline** - sequential logic of unit processing that contains input  queue.
+* **Suppliers** - entity that produces packages that contains processing units.
+* **Conveyor** - environment for hosting pipelines and routing packages from sources and direct requests to pipelines' input queues.
 
 Also framework define entities:
-**Package** - special box that contains all necessary for routing and processing info about nested unit (*label, headers, load type, external id*).
-**Pipeline blueprint** - description of processing steps sequence
-**Pipeline builder** - class that contains methods for describing pipelines steps sequences
-**Pipeline descriptor** - class that contains info about pipeline: it's descriptor, concurrency limit, packages routing type.
-**Unit context** - context of concrete processing unit, that contains processing headers, processing id, unit id.
-**Transfering context** - context of package processing, that contains processing headers, processing id, unit id.
+* **Package** - special box that contains all necessary for routing and processing info about nested unit (*label, headers, load type, external id*).
+* **Pipeline blueprint** - description of processing steps sequence
+* **Pipeline builder** - class that contains methods for describing pipelines steps sequences
+* **Pipeline descriptor** - class that contains info about pipeline: it's descriptor, concurrency limit, packages routing type.
+* **Unit context** - context of concrete processing unit, that contains processing headers, processing id, unit id.
+* **Transfering context** - context of package processing, that contains processing headers, processing id, unit id.
 
 Superficial processing logic description:
 1. Conveyor collects pipelines blueprints and build according to them pipelines
