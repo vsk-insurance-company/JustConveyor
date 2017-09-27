@@ -62,7 +62,8 @@ public class IntegersProcessorPipelineBuilder
 	public PipelineDescriptor CreateIntMultPipeline()
 	{
 		var blueprint = PipelineBlueprint
-			.CreateBlueprint<int>("TestIntMultPipeline") // Create blueprint with given name (name just for metrics display)
+			// Create blueprint with given name (name just for metrics display)
+			.CreateBlueprint<int>("TestIntMultPipeline")			
 			.Apply<IntegersProcessor>("multiplyby2")
 			.Apply((utx, tctx) => // Just for longer process time duration
 			{
