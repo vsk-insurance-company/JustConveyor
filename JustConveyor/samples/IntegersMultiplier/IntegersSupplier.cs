@@ -25,7 +25,7 @@ namespace IntegersMultiplier
 
         public async Task<Package> SupplyNextPackage()
         {
-            var randomWaitTime = TimeSpan.FromSeconds(new Random(DateTime.Now.Millisecond).Next(1, 10));
+            var randomWaitTime = TimeSpan.FromSeconds(new Random(DateTime.Now.Millisecond).Next(1, 5));
             await Task.Delay(randomWaitTime);
 
             if(mInts.Count == 0)

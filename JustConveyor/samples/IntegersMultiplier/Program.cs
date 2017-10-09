@@ -3,6 +3,7 @@ using System.Linq;
 using NLog;
 using JustConveyor;
 using JustConveyor.Contracts.Dependencies;
+using JustConveyor.Contracts.Settings;
 using JustConveyor.Contracts.Utils;
 using JustConveyor.Injection;
 
@@ -20,7 +21,7 @@ namespace IntegersMultiplier
 
 			// Preparing jobs and finalizer
 			// This will be our jobs
-			var processingInts = Enumerable.Range(0, 10).ToList();
+			var processingInts = Enumerable.Range(0, 1000).ToList();
 			container.RegisterSingle<IEnumerable<int>>(processingInts);
 			// And in "collector" we will accumulate results.
 			container.RegisterSingle("collector", new List<int>());
@@ -31,9 +32,18 @@ namespace IntegersMultiplier
 			// And boostrapping Conveyor itself
 			Conveyor.Init(logger)
 				.ScanForBlueprints()
-				.WithMetricsService()
+				.WithMetricsService(new MetricsServiceSettings
+				{
+					BaseAddress = "http://*:9910/",
+					CorsAddresses = new List<string> { "http://localhost/*" },
+					MetricsConfig = new MetricsConfig
+					{
+						IncludeLastLogsFrom = new List<string> { "mainLogFile" },
+						CountOfLogLines = 100
+					}
+				})
 				.WithSupplier("IntsSupplier", Injection.InjectionProvider.Get<IntegersSupplier>())
-				.WithFinalizer(finalizer.Finalization)
+				.WithFinalizer(finalizer)
 				.Start();
 
 			return finalizer;

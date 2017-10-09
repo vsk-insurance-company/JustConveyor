@@ -8,6 +8,7 @@ namespace JustConveyor
         public string Name { get; set; }
         public ConveySupplierContract Supplier { get; set; }
         public int SuppliedPackagesCount { get; set; }
+        public int ErrorsCount { get; set; }
         public DateTime? Started { get; set; }
 
         public double PackagesPerSec => Started == null

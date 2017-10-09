@@ -137,6 +137,7 @@
     <Compile Include="Web\Contracts\BlueprintInfo.cs" />
     <Compile Include="Web\Contracts\ContextProcessingHistoryInfo.cs" />
     <Compile Include="Web\Contracts\ConveyorMetrics.cs" />
+    <Compile Include="Web\Contracts\LoggerInfo.cs" />
     <Compile Include="Web\Contracts\PipelineInfo.cs" />
     <Compile Include="Web\Contracts\QueueInfo.cs" />
     <Compile Include="Web\Contracts\SupplierInfo.cs" />

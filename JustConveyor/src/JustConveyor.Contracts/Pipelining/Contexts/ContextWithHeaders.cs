@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
 using JustConveyor.Contracts.Exceptions;
 
 namespace JustConveyor.Contracts.Pipelining.Contexts
@@ -84,6 +83,11 @@ namespace JustConveyor.Contracts.Pipelining.Contexts
 
 			mHeaders.Add(headerName, headerValue);
 		}
+
+		/// <summary>
+		/// Additional meta that can be displayed in metrics service.
+		/// </summary>
+		public Dictionary<string, string> Meta { get; } = new Dictionary<string, string>();
 
 		/// <summary>
 		/// Добавление типа объекта в контекст.

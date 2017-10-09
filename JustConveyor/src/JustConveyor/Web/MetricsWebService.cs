@@ -8,7 +8,7 @@ namespace JustConveyor.Web
     {
         private static IDisposable mMetricsService;
 
-        public static void StartService(ServiceSettings settings)
+        public static void StartService(MetricsServiceSettings settings)
         {
             mMetricsService = WebApp.Start<MetricsServiceStartup>(url: settings.BaseAddress);
         }

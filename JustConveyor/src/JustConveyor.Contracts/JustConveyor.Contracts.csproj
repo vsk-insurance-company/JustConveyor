@@ -105,7 +105,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queues\QueueProviderContract.cs" />
     <Compile Include="Queues\QueuesManagerContract.cs" />
-    <Compile Include="Settings\ServiceSettings.cs" />
+    <Compile Include="Settings\MetricsConfig.cs" />
+    <Compile Include="Settings\MetricsServiceSettings.cs" />
     <Compile Include="Utils\CountFinalizer.cs" />
     <Compile Include="Utils\Finalizer.cs" />
   </ItemGroup>

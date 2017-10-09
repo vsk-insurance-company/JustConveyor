@@ -25,7 +25,7 @@ namespace JustConveyor.Web
             config.Services.Replace(typeof(IContentNegotiator),
                 new JsonContentNegotiator(config.Formatters.JsonFormatter));
 
-            var settings = Injection.InjectionProvider.Get<ServiceSettings>("conveyor:metrics-service-settings");
+            var settings = Injection.InjectionProvider.Get<MetricsServiceSettings>("conveyor:metrics-service-settings");
             var corsPolicy = new CorsPolicy
             {
                 AllowAnyHeader = true,

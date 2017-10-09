@@ -6,6 +6,7 @@
         public string State { get; set; }
         public string SupplierType { get; set; }
         public int Supplied { get; set; }
-        public double PackagesRatePerSec { get; set; }
+        public long Errors { get; set; }
+		public double PackagesRatePerSec { get; set; }
     }
 }

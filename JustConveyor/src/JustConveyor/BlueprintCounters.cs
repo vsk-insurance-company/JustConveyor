@@ -3,7 +3,7 @@ using System.Threading;
 
 namespace JustConveyor
 {
-    internal class BlueprintCounters
+	internal class BlueprintCounters
     {
         public DateTime? Started { get; set; }
 
@@ -17,6 +17,7 @@ namespace JustConveyor
         public long OnQueuePrev { get; set; }
         public long OnQueueDelta { get; set; }
         public long OnQueue { get; set; }
+		public long Errors { get; set; }
 
         private long mIn;
         private long mOut;

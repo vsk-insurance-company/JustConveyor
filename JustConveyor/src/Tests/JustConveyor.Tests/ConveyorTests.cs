@@ -52,7 +52,7 @@ namespace JustConveyor.Tests
             Conveyor.Init(mLogger)
 		        .ScanForBlueprints()
 		        .WithSupplier("IntsSupplier", new IntSupplier(range))
-                .WithFinalizer(countFinalizer.Finalization)
+                .WithFinalizer(countFinalizer)
 		        .Start();
 
 		    countFinalizer.GetWaitTask().Wait();

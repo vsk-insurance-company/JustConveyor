@@ -1,6 +1,10 @@
 *.suo
 *.user
 *.bat
+*.nupkg
+
+**/.idea/*
+
 
 **/bin/*
 **/obj/*

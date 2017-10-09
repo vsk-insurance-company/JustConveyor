@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using JustConveyor.Contracts.Pipelining;
 using JustConveyor.Contracts.Pipelining.Contexts;
 using JustConveyor.Contracts.Settings;
+using JustConveyor.Contracts.Utils;
 
 namespace JustConveyor.Contracts
 {
@@ -26,50 +27,50 @@ namespace JustConveyor.Contracts
 		/// <returns></returns>
 		ConveyorContract WithBlueprint(PipelineDescriptor descriptor);
 
-        /// <summary>
-        /// Start metrics service with given settings.
-        /// </summary>
-        /// <param name="service"></param>
-        /// <returns></returns>
-	    ConveyorContract WithMetricsService(ServiceSettings service = null);
+		/// <summary>
+		/// Start metrics service with given settings.
+		/// </summary>
+		/// <param name="service"></param>
+		/// <returns></returns>
+		ConveyorContract WithMetricsService(MetricsServiceSettings service = null);
 
-        /// <summary>
-        /// Register conveyr suupplier.
-        /// </summary>
-        /// <param name="supplierName"></param>
-        /// <param name="supplier"></param>
-        /// <returns></returns>
-        ConveyorContract WithSupplier(string supplierName, ConveySupplierContract supplier);
+		/// <summary>
+		/// Register conveyr suupplier.
+		/// </summary>
+		/// <param name="supplierName"></param>
+		/// <param name="supplier"></param>
+		/// <returns></returns>
+		ConveyorContract WithSupplier(string supplierName, ConveySupplierContract supplier);
 
-        /// <summary>
-        /// Register finalizer for given pipeline process.
-        /// </summary>
-        /// <param name="pipelineName"></param>
-        /// <param name="finalizer"></param>
-        /// <returns></returns>
-	    ConveyorContract WithPipelineFinalizer(string pipelineName, Action<Package, TransferingContext> finalizer);
+		/// <summary>
+		/// Register finalizer for given pipeline process.
+		/// </summary>
+		/// <param name="pipelineName"></param>
+		/// <param name="finalizer"></param>
+		/// <returns></returns>
+		ConveyorContract WithPipelineFinalizer(string pipelineName, Action<Package, TransferingContext> finalizer);
 
-        /// <summary>
-        /// Register finalizer for all pipelines.
-        /// </summary>
-        /// <param name="finalizer"></param>
-        /// <returns></returns>
-	    ConveyorContract WithFinalizer(Action<Package, TransferingContext> finalizer);
+		/// <summary>
+		/// Register finalizer for all pipelines.
+		/// </summary>
+		/// <param name="finalizer"></param>
+		/// <returns></returns>
+		ConveyorContract WithFinalizer(Finalizer finalizer);
 
-        /// <summary>
-        /// Register lost package processor.
-        /// </summary>
-        /// <param name="lostPackageProcessor"></param>
-        /// <returns></returns>
-	    ConveyorContract WithLostPackagesProcessor(Action<Package> lostPackageProcessor);
+		/// <summary>
+		/// Register lost package processor.
+		/// </summary>
+		/// <param name="lostPackageProcessor"></param>
+		/// <returns></returns>
+		ConveyorContract WithLostPackagesProcessor(Action<Package> lostPackageProcessor);
 
 		/// <summary>
 		/// Start conveying process.
 		/// </summary>
 		/// <returns></returns>
 		void Start();
-        
-        /// <summary>
+
+		/// <summary>
 		/// Start conveying process.
 		/// </summary>
 		/// <returns></returns>
