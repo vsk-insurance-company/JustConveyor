@@ -1,4 +1,4 @@
-JustConveyor (Micro-ETL framework)
+![JustConveyor](https://raw.githubusercontent.com/vsk-insurance-company/JustConveyor/master/JustConveyor.WebAdmin/JustConveyor.WebAdmin/wwwroot/images/logo-dark-small.png) JustConveyor (Micro-ETL framework)
 ================================
 Micro-ETL framework for building integration or ETL in-app processes with conveyor and pipelines model. Initial idea was to get suitable for ease of use model for such processes and use Task-based concurrency for efficient resources usage provided by [TPL](https://msdn.microsoft.com/ru-ru/library/dd460717(v=vs.110).aspx).
 
@@ -138,9 +138,8 @@ internal class Program
 		// And boostrap Conveyor itself in fluent way
 		Conveyor.Init(logger)
 			.ScanForBlueprints()
-			.WithMetricsService()
 			.WithSupplier("IntsSupplier", Injection.InjectionProvider.Get<IntegersSupplier>())
-			.WithFinalizer(finalizer.Finalization)
+			.WithFinalizer(finalizer)
 			.Start();
 
 		return finalizer;
@@ -153,9 +152,39 @@ internal class Program
 	}
 }
 ```
+Metrics Service and Dashboard
+---------------------
+Metrics service can be started during bootstrapping Conveyor.
+```csharp
+Conveyor.Init(logger)
+			.ScanForBlueprints()
+			.WithMetricsService(new MetricsServiceSettings
+				{
+					BaseAddress = "http://*:9910/", // Base address for service
+					CorsAddresses = new List<string> { "http://localhost/*" }, // CORS
+					MetricsConfig = new MetricsConfig // Common metrics config
+					{
+						// List of NLog configured FileTarget's that should be
+						// added in metrics service
+						IncludeLastLogsFrom = new List<string> { "mainLogFile" },
+						
+						// Count of last log lines that should be added in metrics
+						CountOfLogLines = 100
+					}
+				})
+			.WithSupplier("IntsSupplier", Injection.InjectionProvider.Get<IntegersSupplier>())
+			.WithFinalizer(finalizer)
+			.Start();
+```
+
+Metrics service from box can be visualized with JustConveyor.Dashboard
+
+![JustConveyor](https://raw.githubusercontent.com/vsk-insurance-company/JustConveyor/master/Documentation/images/dashboard-sample-00.png) 
+
 
 Roadmap
 ---------------------
+
 Version 1.x
 - [ ] profiling
 - [ ] show settings/version/additional meta
