@@ -157,24 +157,24 @@ Metrics Service and Dashboard
 Metrics service can be started during bootstrapping Conveyor.
 ```csharp
 Conveyor.Init(logger)
-			.ScanForBlueprints()
-			.WithMetricsService(new MetricsServiceSettings
-				{
-					BaseAddress = "http://*:9910/", // Base address for service
-					CorsAddresses = new List<string> { "http://localhost/*" }, // CORS
-					MetricsConfig = new MetricsConfig // Common metrics config
-					{
-						// List of NLog configured FileTarget's that should be
-						// added in metrics service
-						IncludeLastLogsFrom = new List<string> { "mainLogFile" },
-						
-						// Count of last log lines that should be added in metrics
-						CountOfLogLines = 100
-					}
-				})
-			.WithSupplier("IntsSupplier", Injection.InjectionProvider.Get<IntegersSupplier>())
-			.WithFinalizer(finalizer)
-			.Start();
+	.ScanForBlueprints()
+	.WithMetricsService(new MetricsServiceSettings
+		{
+			BaseAddress = "http://*:9910/", // Base address for service
+			CorsAddresses = new List<string> { "http://localhost/*" }, // CORS
+			MetricsConfig = new MetricsConfig // Common metrics config
+			{
+				// List of NLog configured FileTarget's that should be
+				// added in metrics service
+				IncludeLastLogsFrom = new List<string> { "mainLogFile" },
+
+				// Count of last log lines that should be added in metrics
+				CountOfLogLines = 100
+			}
+		})
+	.WithSupplier("IntsSupplier", Injection.InjectionProvider.Get<IntegersSupplier>())
+	.WithFinalizer(finalizer)
+	.Start();
 ```
 
 Metrics service from box can be visualized with JustConveyor.Dashboard
