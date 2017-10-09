@@ -22,6 +22,9 @@ Superficial processing logic description:
 1. Conveyor collects pipelines blueprints and build according to them pipelines
 2. Conveyor gets supply channels and starts feed 'em to pipelines routing by packaged unit type or by package label (routing - just pushing packages in input queues by routing strategies)
 
+Very simplified diagram of the Conveyor logic:
+![JustConveyor](https://raw.githubusercontent.com/vsk-insurance-company/JustConveyor/master/Documentation/images/conveyor-diagram-00.png) 
+
 Usage samples
 ------------------
 As a very base samples we will take trivial task of multiplying given numbers on 2 (*more complex samples* look in samples directory of project *and detailed architecture* look on [project's WIKI](https://github.com/vsk-insurance-company/JustConveyor/wiki)):
@@ -41,7 +44,8 @@ public class IntegersSupplier : ConveySupplierContract
 	public async Task<Package> SupplyNextPackage()
 	{
 		// emulating delays in acquiring next job unit
-		var randomWaitTime = TimeSpan.FromSeconds(new Random(DateTime.Now.Millisecond).Next(1, 10));
+		var randomWaitTime 
+			= TimeSpan.FromSeconds(new Random(DateTime.Now.Millisecond).Next(1, 10));
 		await Task.Delay(randomWaitTime);
 
 		// returning the Fake package to identify end of supplying
@@ -98,7 +102,8 @@ public class IntegersProcessor
 	public async Task<int> MultiplyByTwo(int unit)
 	{
 		// simmulation of async call.
-		var randomWaitTime = TimeSpan.FromSeconds(new Random(DateTime.Now.Millisecond).Next(20, 90));
+		var randomWaitTime 
+			= TimeSpan.FromSeconds(new Random(DateTime.Now.Millisecond).Next(20, 90));
 		await Task.Delay(randomWaitTime); 
 		
 		// just muliplying on 2
@@ -131,9 +136,11 @@ internal class Program
 		container.RegisterSingle<IEnumerable<int>>(processingInts);
 		// And in "collector" we will accumulate results.
 		container.RegisterSingle("collector", new List<int>());
+		
 		// To find out when we can close application we use CountFinalizer
-		var finalizer = new CountFinalizer(processingInts.Count,
-			() => { logger.Info($"Multiplication result: {string.Join(",", container.Get<List<int>>("collector"))}"); });
+		Action inTheEnd =
+		() => logger.Info($"Result: {string.Join(",", container.Get<List<int>>("collector"))}");
+		var finalizer = new CountFinalizer(processingInts.Count, inTheEnd);
 
 		// And boostrap Conveyor itself in fluent way
 		Conveyor.Init(logger)
@@ -157,24 +164,24 @@ Metrics Service and Dashboard
 Metrics service can be started during bootstrapping Conveyor.
 ```csharp
 Conveyor.Init(logger)
-	.ScanForBlueprints()
-	.WithMetricsService(new MetricsServiceSettings
-		{
-			BaseAddress = "http://*:9910/", // Base address for service
-			CorsAddresses = new List<string> { "http://localhost/*" }, // CORS
-			MetricsConfig = new MetricsConfig // Common metrics config
-			{
-				// List of NLog configured FileTarget's that should be
-				// added in metrics service
-				IncludeLastLogsFrom = new List<string> { "mainLogFile" },
-
-				// Count of last log lines that should be added in metrics
-				CountOfLogLines = 100
-			}
-		})
-	.WithSupplier("IntsSupplier", Injection.InjectionProvider.Get<IntegersSupplier>())
-	.WithFinalizer(finalizer)
-	.Start();
+			.ScanForBlueprints()
+			.WithMetricsService(new MetricsServiceSettings
+				{
+					BaseAddress = "http://*:9910/", // Base address for service
+					CorsAddresses = new List<string> { "http://localhost/*" }, // CORS
+					MetricsConfig = new MetricsConfig // Common metrics config
+					{
+						// List of NLog configured FileTarget's that should be
+						// added in metrics service
+						IncludeLastLogsFrom = new List<string> { "mainLogFile" },
+						
+						// Count of last log lines that should be added in metrics
+						CountOfLogLines = 100
+					}
+				})
+			.WithSupplier("IntsSupplier", Injection.InjectionProvider.Get<IntegersSupplier>())
+			.WithFinalizer(finalizer)
+			.Start();
 ```
 
 Metrics service from box can be visualized with JustConveyor.Dashboard
