@@ -45,7 +45,7 @@
             </tbody>
         </table>
     </div>
-    <div  class="row">
+    <div class="row">
         <div class="col-md-3 elements">
             <div class="list-group">
                 <a href="#" class="list-group-item" v-on:click="showBlueprintInfo">Blueprints<span align="center" class="counter pull-right">{{blueprintsTable.values.length}}</span></a>
@@ -53,6 +53,7 @@
                 <a href="#" class="list-group-item" v-on:click="showQueuesInfo">Queues<span align="center" class="counter pull-right">{{queuesTable.values.length}}</span></a>
                 <a href="#" class="list-group-item" v-on:click="showContextsInfo">Contexts<span align="center" class="counter pull-right">{{contextsTable.values.length}}</span></a>
                 <a href="#" class="list-group-item" v-on:click="showSuppliersInfo">Suppliers<span align="center" class="counter pull-right">{{suppliersTable.values.length}}</span></a>
+                <a href="#" class="list-group-item" v-on:click="showLoggersInfo">Loggers<span align="center" class="counter pull-right">{{loggersTable.values.length}}</span></a>
             </div>
         </div>
         <div class="col-md-9 elements">
@@ -106,6 +107,25 @@
                     :paginated="suppliersTable.paginated"
                     :multi-column-sortable="suppliersTable.multiColumnSortable">
                 </vue-bootstrap-table>
+            </div>
+            <div class="row" v-if="visibleInfo == 'loggers'">
+                <div class="col-md-12">
+                    <div class="row">
+                        <vue-bootstrap-table
+                            :columns="loggersTable.columns"
+                            :values="loggersTable.values"
+                            :show-filter="loggersTable.showFilter"
+                            :show-column-picker="loggersTable.showPicker"
+                            :row-click-handler="loggerSelected"
+                            :paginated="loggersTable.paginated"
+                            :multi-column-sortable="loggersTable.multiColumnSortable">
+                        </vue-bootstrap-table>
+                    </div>
+                    <h2>Last logs</h2>
+                    <div class="row logs-area">
+                        <textarea id="logs-textarea" v-model="lastLogs"></textarea>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

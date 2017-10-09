@@ -43,3 +43,19 @@
 .autoupdate-checkbox {
     margin: 5px;
 }
+
+.logo-img {
+    height: 50px;
+    margin-top: -13px;
+    width: auto;
+}
+
+.logs-area {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.logs-area > textarea {
+    width: 100%;
+    height: 500px;
+}
