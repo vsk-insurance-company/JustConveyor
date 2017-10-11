@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 
 namespace JustConveyor.Web.Contracts
 {
@@ -10,6 +11,6 @@ namespace JustConveyor.Web.Contracts
         public DateTime ProcessingStart { get; set; }
         public IEnumerable<ContextProcessingHistoryInfo> ProcessingHistory { get; set; }
         public string InProcessing { get; set; }
-	    public string Meta { get; set; }
+	    public JObject Meta { get; set; }
     }
 }

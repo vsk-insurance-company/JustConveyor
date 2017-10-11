@@ -6,6 +6,8 @@ using System.Web.Http;
 using JustConveyor.Contracts.Dependencies;
 using JustConveyor.Contracts.Settings;
 using JustConveyor.Web.Contracts;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NLog;
 using NLog.Targets;
 
@@ -72,11 +74,11 @@ namespace JustConveyor.Web.Controllers
 					Supplied = el.SuppliedPackagesCount,
 					PackagesRatePerSec = el.PackagesPerSec
 				}),
-				Contextes = conveyor.RunningContextes.Select(el => new TransferingContextInfo
+				Contexts = conveyor.RunningContextes.Select(el => new TransferingContextInfo
 				{
 					Id = el.Key,
 					Step = el.Value.ProcessingHistory.Peek().StepName,
-					Meta = $"[{string.Join(";", el.Value.Meta.Select(mel => $"{mel.Key}:{mel.Value}"))}]",
+					Meta = JObject.FromObject(el.Value.Meta),
 					ProcessingStart = el.Value.ProcessingStart,
 					ProcessingHistory =
 						el.Value.ProcessingHistory.Where(hel => hel.Finished != null)

@@ -11,7 +11,7 @@ namespace JustConveyor.Web.Contracts
         public IEnumerable<QueueInfo> Queues { get; set; }
         public IEnumerable<BlueprintInfo> Blueprints { get; set; }
         public IEnumerable<SupplierInfo> Suppliers { get; set; }
-        public IEnumerable<TransferingContextInfo> Contextes { get; set; }
+        public IEnumerable<TransferingContextInfo> Contexts { get; set; }
 		public List<LoggerInfo> Loggers { get; set; } = new List<LoggerInfo>();
     }
 }
