@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using NLog;
@@ -25,10 +26,10 @@ namespace IntegersMultiplier
             var processingInts = Enumerable.Range(0, 1000).ToList();
             container.RegisterSingle<IEnumerable<int>>(processingInts);
             // And in "collector" we will accumulate results.
-            container.RegisterSingle("collector", new List<int>());
+            container.RegisterSingle("collector", new ConcurrentBag<int>());
             // To find out when we can close application we use CountFinalizer
             Action inTheEnd =
-                () => logger.Info($"Result: {string.Join(",", container.Get<List<int>>("collector"))}");
+                () => logger.Info($"Result: {string.Join(",", container.Get<IEnumerable<int>>("collector"))}");
 
             var finalizer = new CountFinalizer(processingInts.Count, inTheEnd);
 
@@ -37,7 +38,7 @@ namespace IntegersMultiplier
                 .ScanForBlueprints()
                 .WithMetricsService(new MetricsServiceSettings
                 {
-                    BaseAddress = "http://*:9910/",
+                    BaseAddress = "http://localhost:5001/",
                     CorsAddresses = new List<string> {"http://localhost/*"},
                     MetricsConfig = new MetricsConfig
                     {

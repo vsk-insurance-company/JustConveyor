@@ -57,7 +57,7 @@ namespace JustConveyor.Web.Controllers
 				}),
 				Queues = conveyor.BlueprintsMap.Values.Select(el => new QueueInfo
 				{
-					Blueprint = el.Pipeline.Id,
+					Blueprint = el.Pipeline.Blueprint.Name,
 					QueueType = el.QueueProvider.GetType().AssemblyQualifiedName,
 					OnQueue = el.Counters.OnQueue,
 					OnQueuePrevious = el.Counters.OnQueuePrev,

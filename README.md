@@ -1,4 +1,4 @@
-![JustConveyor](https://raw.githubusercontent.com/vsk-insurance-company/JustConveyor/master/JustConveyor.WebAdmin/JustConveyor.WebAdmin/wwwroot/images/logo-dark-small.png) JustConveyor (Micro-ETL framework)
+![JustConveyor](https://raw.githubusercontent.com/vsk-insurance-company/JustConveyor.Documentation/master/images/logo-dark-small.png) JustConveyor (Micro-ETL framework)
 ================================
 Micro-ETL framework for building integration or ETL in-app processes with conveyor and pipelines model. Initial idea was to get suitable for ease of use model for such processes and use Task-based concurrency for efficient resources usage provided by [TPL](https://msdn.microsoft.com/ru-ru/library/dd460717(v=vs.110).aspx).
 
@@ -159,7 +159,7 @@ internal class Program
 	}
 }
 ```
-Metrics Service and Dashboard
+Metrics Service
 ---------------------
 Metrics service can be started during bootstrapping Conveyor.
 ```csharp
@@ -184,11 +184,6 @@ Conveyor.Init(logger)
 			.Start();
 ```
 
-Metrics service from box can be visualized with JustConveyor.Dashboard
-
-![JustConveyor](https://raw.githubusercontent.com/vsk-insurance-company/JustConveyor/master/Documentation/images/dashboard-sample-00.png) 
-
-
 Roadmap
 ---------------------
 
@@ -197,7 +192,7 @@ Version 1.x
 - [ ] show settings/version/additional meta
 - [ ] emergent cancellation and suspending
 - [ ] internal μservices
-- [ ] get last logs
+- [x] get last logs
 - [ ] admin web-console
 - [ ] short circuiting
 - [ ] interceptors

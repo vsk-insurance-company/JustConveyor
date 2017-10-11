@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using JustConveyor.Contracts.Attributes;
@@ -45,9 +46,9 @@ namespace IntegersMultiplier
 	[Injecting]
 	public class IntegersProcessor
 	{
-		private readonly List<int> mCollector;
+		private readonly ConcurrentBag<int> mCollector;
 
-		public IntegersProcessor([Inject("collector")] List<int> collector)
+		public IntegersProcessor([Inject("collector")] ConcurrentBag<int> collector)
 		{
 			mCollector = collector;
 		}
